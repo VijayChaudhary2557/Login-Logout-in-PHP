@@ -1,11 +1,13 @@
-# Official PHP + Apache image
 FROM php:8.1-apache
 
-# Copy all project files to Apache server root
-COPY . /var/www/html/
+# mysqli install karo
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
-# Enable Apache Rewrite Module (optional, useful for routing)
+# Rewrite module enable karo (agar zarurat ho)
 RUN a2enmod rewrite
 
-# Expose port 80 for web
+# Copy your code to Apache web root
+COPY . /var/www/html/
+
+# Port expose karo
 EXPOSE 80
